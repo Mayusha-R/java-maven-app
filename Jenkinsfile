@@ -3,25 +3,20 @@ pipeline {
     
     environment {
         MAVEN_HOME = tool 'Maven-3.9.0'
+	PATH = "$MAVEN_HOME/bin:$PATH"
     }
     
     stages {
         stage('Build') {
             steps {
-                script {
-                    echo "Building ...."
-                    withEnv(["PATH+MAVEN=${MAVEN_HOME}//bin"]) {
-                        sh 'mvn clean install'
-                    }
-                }
+                echo "Building ...."
+                sh 'mvn clean install'
             }
         }
         stage('Test') {
             steps {
-                script {
-                    echo "Test..."
-                    
-		}
+                echo "Test..."
+        	sh 'mvn test'    
             }
         }
     }
