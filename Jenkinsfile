@@ -1,13 +1,16 @@
 pipeline {
     agent any
     
+    environment {
+        MAVEN_HOME = tool 'Maven-3.9.0'
+    }
     
     stages {
         stage('Build') {
             steps {
                 script {
                     echo "Building ...."
-                    withEnv(["PATH+MAVEN=${env.MAVEN_HOME}//bin"]) {
+                    withEnv(["PATH+MAVEN=${MAVEN_HOME}//bin"]) {
                         sh 'mvn clean install'
                     }
                 }
