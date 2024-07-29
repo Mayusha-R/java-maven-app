@@ -19,8 +19,8 @@ pipeline {
         stage('Test') {
             steps {
                 script {
-                    echo "Test..."
-                    
+                    echo "Executing java file"
+                    sh "java src/main/java/com/example/App.java"
 		}
             }
         }
